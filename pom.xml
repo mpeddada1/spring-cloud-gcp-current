@@ -336,9 +336,11 @@
 					</execution>
 				</executions>
 			</plugin>
+
 			<plugin>
 				<groupId>org.graalvm.buildtools</groupId>
 				<artifactId>native-maven-plugin</artifactId>
+				<version>0.9.20</version>
 				<extensions>true</extensions>
 			</plugin>
 		</plugins>
@@ -347,11 +349,18 @@
 	<profiles>
 		<profile>
 			<id>spring-native</id>
+
 			<dependencies>
 				<dependency>
 					<groupId>org.junit.platform</groupId>
 					<artifactId>junit-platform-launcher</artifactId>
 					<version>1.9.2</version>
+					<scope>test</scope>
+				</dependency>
+				<dependency>
+					<groupId>org.junit.vintage</groupId>
+					<artifactId>junit-vintage-engine</artifactId>
+					<version>5.9.2</version>
 					<scope>test</scope>
 				</dependency>
 			</dependencies>
@@ -365,9 +374,18 @@
 							<!-- https://docs.spring.io/spring-boot/docs/current/maven-plugin/reference/htmlsingle/#integration-tests.no-starter-parent -->
 							<excludes combine.self="override" />
 							<includes>
+								<include>**/PubSubAutoConfigurationIntegrationTests</include>
 								<include>**/PubSubAdminTests</include>
+								<include>**/BigQueryTemplateTest</include>
+<!--								<include>**/GcpPubSubAutoConfigurationTests</include>-->
 							</includes>
 							<classesDirectory>${project.build.outputDirectory}</classesDirectory>
+							<systemProperties>
+								<systemProperty>
+									<key>it.pubsub</key>
+									<value>true</value>
+								</systemProperty>
+							</systemProperties>
 						</configuration>
 					</plugin>
 					<plugin>
@@ -406,7 +424,7 @@
 				</plugins>
 			</build>
 		</profile>
-		
+
 		<profile>
 			<id>default</id>
 			<activation>
