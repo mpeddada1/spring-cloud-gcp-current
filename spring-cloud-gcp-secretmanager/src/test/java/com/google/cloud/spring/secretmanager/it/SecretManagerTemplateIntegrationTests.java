@@ -31,7 +31,7 @@ import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit.jupiter.SpringExtension;
 
 /** Integration tests for {@link SecretManagerTemplate}. */
-@EnabledIfSystemProperty(named = "it.secretmanager", matches = "true")
+//@EnabledIfSystemProperty(named = "it.secretmanager", matches = "true")
 @ExtendWith(SpringExtension.class)
 @ContextConfiguration(classes = {SecretManagerTestConfiguration.class})
 class SecretManagerTemplateIntegrationTests {
