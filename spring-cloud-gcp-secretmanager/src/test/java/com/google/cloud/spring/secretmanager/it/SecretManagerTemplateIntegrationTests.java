@@ -24,14 +24,16 @@ import static org.awaitility.Awaitility.await;
 import com.google.cloud.spring.secretmanager.SecretManagerTemplate;
 import java.time.Duration;
 import org.junit.jupiter.api.Test;
+import org.junit.jupiter.api.condition.DisabledInNativeImage;
 import org.junit.jupiter.api.condition.EnabledIfSystemProperty;
+import org.junit.jupiter.api.condition.EnabledInNativeImage;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit.jupiter.SpringExtension;
 
 /** Integration tests for {@link SecretManagerTemplate}. */
-@EnabledIfSystemProperty(named = "it.secretmanager", matches = "true")
+// @EnabledIfSystemProperty(named = "it.secretmanager", matches = "true")
 @ExtendWith(SpringExtension.class)
 @ContextConfiguration(classes = {SecretManagerTestConfiguration.class})
 class SecretManagerTemplateIntegrationTests {

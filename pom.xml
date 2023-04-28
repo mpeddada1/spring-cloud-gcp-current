@@ -371,6 +371,7 @@
 								<include>**/PubSubAutoConfigurationIntegrationTests</include>
 								<include>**/PubSubAdminTests</include>
 								<include>**/BigQueryTemplateTest</include>
+								<include>**/*IntegrationTests.java</include>
 <!--								<include>**/GcpPubSubAutoConfigurationTests</include>-->
 							</includes>
 							<classesDirectory>${project.build.outputDirectory}</classesDirectory>
