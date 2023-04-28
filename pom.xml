@@ -392,6 +392,10 @@
 							<metadataRepository>
 								<enabled>true</enabled>
 							</metadataRepository>
+							<buildArgs>
+								<buildArg>--initialize-at-build-time=org.apache.commons.logging.LogFactory</buildArg>
+								<arg>-Dit.secretmanager=true</arg>
+							</buildArgs>
 						</configuration>
 						<executions>
 							<execution>
