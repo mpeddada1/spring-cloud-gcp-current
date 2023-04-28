@@ -65,7 +65,35 @@
       </dependency>
     </dependencies>
   </dependencyManagement>
-
+  <profiles>
+    <profile>
+      <id>native</id>
+      <build>
+        <plugins>
+          <plugin>
+            <groupId>org.graalvm.buildtools</groupId>
+            <artifactId>native-maven-plugin</artifactId>
+            <version>0.9.20</version>
+            <configuration>
+              <buildArgs>
+                <buildArg>--trace-class-initialization=org.apache.commons.logging.LogFactoryService</buildArg>
+                <buildArg>--initialize-at-build-time=org.apache.commons.logging.LogFactory</buildArg>
+              </buildArgs>
+            </configuration>
+            <executions>
+              <execution>
+                <id>build-native</id>
+                <goals>
+                  <goal>build</goal>
+                </goals>
+                <phase>package</phase>
+              </execution>
+            </executions>
+          </plugin>
+        </plugins>
+      </build>
+    </profile>
+  </profiles>
   <build>
     <plugins>
       <plugin>
@@ -75,21 +103,6 @@
         </configuration>
       </plugin>
 
-      <plugin>
-        <groupId>org.graalvm.buildtools</groupId>
-        <artifactId>native-maven-plugin</artifactId>
-        <version>0.9.20</version>
-        <configuration>
-          <buildArgs>
-            <buildArg>--trace-class-initialization=org.apache.commons.logging.LogFactoryService</buildArg>
-            <buildArg>--initialize-at-build-time=org.apache.commons.logging.LogFactory</buildArg>
-          </buildArgs>
-        </configuration>
-      </plugin>
-      <plugin>
-        <groupId>org.springframework.boot</groupId>
-        <artifactId>spring-boot-maven-plugin</artifactId>
-      </plugin>
     </plugins>
   </build>
 
