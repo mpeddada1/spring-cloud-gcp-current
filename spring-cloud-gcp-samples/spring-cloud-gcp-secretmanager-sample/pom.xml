@@ -79,12 +79,12 @@
         <groupId>org.graalvm.buildtools</groupId>
         <artifactId>native-maven-plugin</artifactId>
         <version>0.9.20</version>
-        <configuration>
-          <buildArgs>
-            <buildArg>--trace-class-initialization=org.apache.commons.logging.LogFactoryService</buildArg>
-            <buildArg>--initialize-at-build-time=org.apache.commons.logging.LogFactory</buildArg>
-          </buildArgs>
-        </configuration>
+<!--        <configuration>-->
+<!--          <buildArgs>-->
+<!--            <buildArg>&#45;&#45;trace-class-initialization=org.apache.commons.logging.LogFactoryService</buildArg>-->
+<!--            <buildArg>&#45;&#45;initialize-at-build-time=org.apache.commons.logging.LogFactory</buildArg>-->
+<!--          </buildArgs>-->
+<!--        </configuration>-->
       </plugin>
       <plugin>
         <groupId>org.springframework.boot</groupId>
