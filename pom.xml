@@ -372,7 +372,7 @@
 								<include>**/PubSubAdminTests</include>
 								<include>**/BigQueryTemplateTest</include>
 								<include>**/SecretManagerTemplateIntegrationTests</include>
-<!--								<include>**/GcpPubSubAutoConfigurationTests</include>-->
+								<include>**/GcpPubSubAutoConfigurationTests</include>
 							</includes>
 							<classesDirectory>${project.build.outputDirectory}</classesDirectory>
 							<systemProperties>
@@ -394,8 +394,10 @@
 							</metadataRepository>
 							<buildArgs>
 								<buildArg>--initialize-at-build-time=org.apache.commons.logging.LogFactory</buildArg>
-								<arg>-Dit.secretmanager=true</arg>
 							</buildArgs>
+							<metadataRepository>
+								<enabled>true</enabled>
+							</metadataRepository>
 						</configuration>
 						<executions>
 							<execution>
@@ -404,6 +406,12 @@
 									<goal>test</goal>
 								</goals>
 								<phase>test</phase>
+							</execution>
+							<execution>
+								<id>add-reachability-metadata</id>
+								<goals>
+									<goal>add-reachability-metadata</goal>
+								</goals>
 							</execution>
 						</executions>
 					</plugin>
