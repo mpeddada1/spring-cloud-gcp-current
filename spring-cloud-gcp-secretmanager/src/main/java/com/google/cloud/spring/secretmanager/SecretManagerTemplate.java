@@ -33,6 +33,7 @@ import javax.annotation.Nullable;
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
 
+
 /**
  * Offers convenience methods for performing common operations on Secret Manager including creating
  * and reading secrets.
@@ -45,8 +46,8 @@ public class SecretManagerTemplate implements SecretManagerOperations {
    * Default value for the latest version of the secret.
    */
   public static final String LATEST_VERSION = "latest";
-
   private static final Log LOGGER = LogFactory.getLog(SecretManagerTemplate.class);
+
   private final SecretManagerServiceClient secretManagerServiceClient;
   private final GcpProjectIdProvider projectIdProvider;
   /**
