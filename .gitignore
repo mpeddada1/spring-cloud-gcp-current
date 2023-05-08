@@ -35,3 +35,6 @@ dependency-reduced-pom.xml
 
 .flattened-pom.xml
 *.versionsBackup
+
+# Ignore native-image-config folder created by tracing agent
+**/native-image-config/
