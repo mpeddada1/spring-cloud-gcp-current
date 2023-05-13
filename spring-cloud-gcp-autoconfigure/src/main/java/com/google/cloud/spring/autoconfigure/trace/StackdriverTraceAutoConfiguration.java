@@ -48,6 +48,7 @@ import org.springframework.boot.autoconfigure.condition.ConditionalOnMissingBean
 import org.springframework.boot.autoconfigure.condition.ConditionalOnProperty;
 import org.springframework.boot.context.properties.EnableConfigurationProperties;
 import org.springframework.context.annotation.Bean;
+import org.springframework.context.annotation.ImportRuntimeHints;
 import org.springframework.scheduling.concurrent.ThreadPoolTaskScheduler;
 import zipkin2.CheckResult;
 import zipkin2.Span;
@@ -64,6 +65,7 @@ import zipkin2.reporter.stackdriver.StackdriverSender.Builder;
 
 /** Config for Stackdriver Trace. */
 @AutoConfiguration
+@ImportRuntimeHints(TraceRuntimeHints.class)
 @EnableConfigurationProperties({GcpTraceProperties.class})
 @ConditionalOnProperty(
     value = {"spring.cloud.gcp.trace.enabled"},
