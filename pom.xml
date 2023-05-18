@@ -372,12 +372,9 @@
 							<include>**/*IntegrationTests.java</include>
 						</includes>
 						<classesDirectory>${project.build.outputDirectory}</classesDirectory>
-						<systemProperties>
-							<property>
-								<name>it.vision</name>
-								<value>true</value>
-							</property>
-						</systemProperties>
+						<systemPropertyVariables>
+							<it.vision>true</it.vision>
+						</systemPropertyVariables>
 					</configuration>
 				</plugin>
 				<plugin>
