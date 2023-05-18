@@ -373,6 +373,10 @@
 						</includes>
 						<classesDirectory>${project.build.outputDirectory}</classesDirectory>
 						<systemProperties>
+							<property>
+								<name>it.vision</name>
+								<value>true</value>
+							</property>
 						</systemProperties>
 					</configuration>
 				</plugin>
