@@ -372,8 +372,9 @@
 							<include>**/*IntegrationTests.java</include>
 						</includes>
 						<classesDirectory>${project.build.outputDirectory}</classesDirectory>
-						<systemProperties>
-						</systemProperties>
+						<systemPropertyVariables>
+							<it.storage>true</it.storage>
+						</systemPropertyVariables>
 					</configuration>
 				</plugin>
 				<plugin>
