@@ -48,7 +48,8 @@ import org.springframework.test.context.junit.jupiter.SpringExtension;
 @ExtendWith(SpringExtension.class)
 @SpringBootTest(
     webEnvironment = WebEnvironment.RANDOM_PORT,
-    classes = {GcsApplication.class})
+    classes = {GcsApplication.class},
+    args = "gcs-resource-test-bucket=gcp-storage-resource-bucket-sample")
 class GcsSampleApplicationIntegrationTests {
 
   @Autowired private Storage storage;

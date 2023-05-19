@@ -41,7 +41,7 @@ import org.junit.jupiter.api.extension.ExtendWith;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.boot.test.context.SpringBootTest;
-import org.springframework.context.annotation.PropertySource;
+import org.springframework.test.context.TestPropertySource;
 import org.springframework.test.context.junit.jupiter.SpringExtension;
 
 /**
@@ -53,7 +53,7 @@ import org.springframework.test.context.junit.jupiter.SpringExtension;
  */
 @EnabledIfSystemProperty(named = "it.storage", matches = "true")
 @ExtendWith(SpringExtension.class)
-@PropertySource("classpath:application.properties")
+@TestPropertySource(locations = "classpath:application-test.properties")
 @SpringBootTest(classes = {GcsSpringIntegrationApplication.class})
 class GcsSpringIntegrationTests {
 
