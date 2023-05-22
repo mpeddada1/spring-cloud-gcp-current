@@ -103,7 +103,7 @@
 							</includes>
 							<classesDirectory>${project.build.outputDirectory}</classesDirectory>
 							<systemPropertyVariables>
-								<it.storage>true</it.storage>
+								<it.pubsub>true</it.pubsub>
 							</systemPropertyVariables>
 						</configuration>
 					</plugin>
