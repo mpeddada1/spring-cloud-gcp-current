@@ -78,6 +78,33 @@
 	</modules>
 
 	<profiles>
+<!--		<profile>-->
+<!--			<id>native-sample</id>-->
+<!--			<build>-->
+<!--				<plugins>-->
+<!--					<plugin>-->
+<!--						<groupId>org.graalvm.buildtools</groupId>-->
+<!--						<artifactId>native-maven-plugin</artifactId>-->
+<!--						<version>0.9.20</version>-->
+<!--						<configuration>-->
+<!--							<buildArgs>-->
+<!--								<buildArg>&#45;&#45;trace-class-initialization=org.apache.commons.logging.LogFactoryService</buildArg>-->
+<!--								<buildArg>&#45;&#45;initialize-at-build-time=org.apache.commons.logging.LogFactory</buildArg>-->
+<!--							</buildArgs>-->
+<!--						</configuration>-->
+<!--						<executions>-->
+<!--							<execution>-->
+<!--								<id>build-native</id>-->
+<!--								<goals>-->
+<!--									<goal>build</goal>-->
+<!--								</goals>-->
+<!--								<phase>package</phase>-->
+<!--							</execution>-->
+<!--						</executions>-->
+<!--					</plugin>-->
+<!--				</plugins>-->
+<!--			</build>-->
+<!--		</profile>-->
 		<profile>
 			<id>spring-cloud-gcp-ci-it</id>
 			<build>
@@ -110,6 +137,21 @@
 			<artifactId>junit-vintage-engine</artifactId>
 			<scope>test</scope>
 		</dependency>
+
+		<dependency>
+			<groupId>com.rometools</groupId>
+			<artifactId>rome</artifactId>
+			<version>1.18.0</version>
+		</dependency>
+
+		<dependency>
+			<groupId>org.jetbrains.kotlinx</groupId>
+			<artifactId>kotlinx-serialization-core</artifactId>
+			<version>1.4.1</version>
+			<type>pom</type>
+			<scope>runtime</scope>
+		</dependency>
+
 
 	</dependencies>
 
@@ -212,6 +254,20 @@
 						</configuration>
 					</execution>
 				</executions>
+			</plugin>
+			<plugin>
+				<groupId>org.graalvm.buildtools</groupId>
+				<artifactId>native-maven-plugin</artifactId>
+				<version>0.9.20</version>
+				<configuration>
+					<buildArgs>
+						<buildArg>--initialize-at-build-time=org.apache.commons.logging.LogFactory</buildArg>
+					</buildArgs>
+				</configuration>
+			</plugin>
+			<plugin>
+				<groupId>org.springframework.boot</groupId>
+				<artifactId>spring-boot-maven-plugin</artifactId>
 			</plugin>
 		</plugins>
 	</build>
