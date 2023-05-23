@@ -99,7 +99,7 @@
 							<excludes combine.self="override" />
 							<includes>
 								<!--including all integration tests for testing purposes.-->
-								<include>**/*IntegrationTests.java</include>
+								<include>${integration-test.pattern}</include>
 							</includes>
 							<classesDirectory>${project.build.outputDirectory}</classesDirectory>
 							<systemPropertyVariables>
