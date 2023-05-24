@@ -104,6 +104,7 @@
 							<classesDirectory>${project.build.outputDirectory}</classesDirectory>
 							<systemPropertyVariables>
 								<it.pubsub>true</it.pubsub>
+								<it.pubsub-integration>true</it.pubsub-integration>
 							</systemPropertyVariables>
 						</configuration>
 					</plugin>
