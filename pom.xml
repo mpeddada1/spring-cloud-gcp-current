@@ -37,7 +37,7 @@
 		<project.parent.version>${project.version}</project.parent.version>
 		<!-- Dependency versions -->
 		<spring-cloud-dependencies.version>2022.0.2</spring-cloud-dependencies.version>
-		<spring-boot-dependencies.version>3.0.6</spring-boot-dependencies.version>
+		<spring-boot-dependencies.version>3.1.0</spring-boot-dependencies.version>
 		<spring-cloud-gcp-dependencies.version>${project.parent.version}</spring-cloud-gcp-dependencies.version>
 		<zipkin-gcp.version>1.0.4</zipkin-gcp.version>
 		<java-cfenv.version>2.4.2</java-cfenv.version>
@@ -369,11 +369,14 @@
 						<excludes combine.self="override" />
 						<includes>
 							<!--including all integration tests for testing purposes.-->
-							<include>**/*IntegrationTests.java</include>
+							<include>${integration-test.pattern}</include>
 						</includes>
 						<classesDirectory>${project.build.outputDirectory}</classesDirectory>
-						<systemProperties>
-						</systemProperties>
+						<systemPropertyVariables>
+							<it.pubsub>true</it.pubsub>
+							<it.pubsub-integration>true</it.pubsub-integration>
+							<it.datastore>true</it.datastore>
+						</systemPropertyVariables>
 					</configuration>
 				</plugin>
 				<plugin>
@@ -403,7 +406,7 @@
 				<plugin>
 					<groupId>org.springframework.boot</groupId>
 					<artifactId>spring-boot-maven-plugin</artifactId>
-					<version>3.0.5</version>
+					<version>3.1.0</version>
 					<executions>
 						<execution>
 							<id>process-test-aot</id>

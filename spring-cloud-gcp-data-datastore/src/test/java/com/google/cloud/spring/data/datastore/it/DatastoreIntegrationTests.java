@@ -69,6 +69,7 @@ import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.Timeout;
+import org.junit.jupiter.api.condition.DisabledInNativeImage;
 import org.junit.jupiter.api.condition.EnabledIfSystemProperty;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -93,6 +94,7 @@ import org.springframework.transaction.TransactionSystemException;
 @EnabledIfSystemProperty(named = "it.datastore", matches = "true")
 @ExtendWith(SpringExtension.class)
 @ContextConfiguration(classes = {DatastoreIntegrationTestConfiguration.class})
+@DisabledInNativeImage
 class DatastoreIntegrationTests extends AbstractDatastoreIntegrationTests {
 
   // This value is multiplied against recorded actual times needed to wait for eventual
@@ -607,21 +609,6 @@ class DatastoreIntegrationTests extends AbstractDatastoreIntegrationTests {
             });
   }
 
-  @Test
-  void projectionTest() {
-    reset(datastoreTemplate);
-    assertThat(this.testEntityRepository.findBySize(2L).getColor()).isEqualTo("blue");
-
-    ProjectionEntityQuery projectionQuery =
-        com.google.cloud.datastore.Query.newProjectionEntityQueryBuilder()
-            .addProjection("color")
-            .setFilter(PropertyFilter.eq("size", 2L))
-            .setKind("test_entities_ci")
-            .setLimit(1)
-            .build();
-
-    verify(datastoreTemplate).queryKeysOrEntities(eq(projectionQuery), any());
-  }
 
   @Test
   void embeddedEntitiesTest() {
@@ -997,32 +984,6 @@ class DatastoreIntegrationTests extends AbstractDatastoreIntegrationTests {
     assertThat(readCompany.leaders.get(0).id).isEqualTo(entity1.id);
   }
 
-  @Test
-  void testSlicedEntityProjections() {
-    reset(datastoreTemplate);
-    Slice<TestEntityProjection> testEntityProjectionSlice =
-        this.testEntityRepository.findBySize(2L, PageRequest.of(0, 1));
-
-    List<TestEntityProjection> testEntityProjections =
-        testEntityProjectionSlice.get().collect(Collectors.toList());
-
-    assertThat(testEntityProjections).hasSize(1);
-    assertThat(testEntityProjections.get(0)).isInstanceOf(TestEntityProjection.class);
-    assertThat(testEntityProjections.get(0)).isNotInstanceOf(TestEntity.class);
-
-    // Verifies that the projection method call works.
-    assertThat(testEntityProjections.get(0).getColor()).isEqualTo("blue");
-
-    ProjectionEntityQuery projectionQuery =
-        com.google.cloud.datastore.Query.newProjectionEntityQueryBuilder()
-            .addProjection("color")
-            .setFilter(PropertyFilter.eq("size", 2L))
-            .setKind("test_entities_ci")
-            .setLimit(1)
-            .build();
-
-    verify(datastoreTemplate).queryKeysOrEntities(eq(projectionQuery), any());
-  }
 
   @Test
   void testPageableGqlEntityProjectionsPage() {

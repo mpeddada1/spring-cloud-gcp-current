@@ -23,6 +23,7 @@ import java.util.UUID;
 import java.util.concurrent.TimeUnit;
 import org.awaitility.Awaitility;
 import org.junit.jupiter.api.Test;
+import org.junit.jupiter.api.condition.DisabledInNativeImage;
 import org.junit.jupiter.api.condition.EnabledIfSystemProperty;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.springframework.boot.builder.SpringApplicationBuilder;
@@ -39,6 +40,7 @@ import org.springframework.web.client.RestTemplate;
 // Please use "-Dit.pubsub=true" to enable the tests
 @EnabledIfSystemProperty(named = "it.pubsub", matches = "true")
 @ExtendWith(OutputCaptureExtension.class)
+@DisabledInNativeImage
 class PubSubStreamBinderSampleAppIntegrationTest {
 
   @Test

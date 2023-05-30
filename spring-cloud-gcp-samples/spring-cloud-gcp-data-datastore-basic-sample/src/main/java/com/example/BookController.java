@@ -16,63 +16,63 @@
 
 package com.example;
 
+import com.google.cloud.spring.data.datastore.core.DatastoreTemplate;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Optional;
-import org.springframework.web.bind.annotation.DeleteMapping;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 @RestController
 public class BookController {
-  private final BookRepository bookRepository;
+  @Autowired
+  private DatastoreTemplate datastoreTemplate;
 
-  public BookController(BookRepository bookRepository) {
-    this.bookRepository = bookRepository;
-  }
+  // public BookController(BookRepository bookRepository) {
+  //   this.bookRepository = bookRepository;
+  // }
 
   @PostMapping("/saveBook")
   public String saveBook(@RequestBody Book book) {
     if (book == null) {
       return "The book is invalid";
     }
-    this.bookRepository.save(book);
+    this.datastoreTemplate.save(book);
     return "success";
   }
 
   @GetMapping("/findAllBooks")
   public String findAllBooks() {
-    Iterable<Book> books = this.bookRepository.findAll();
+    Iterable<Book> books = this.datastoreTemplate.findAll(Book.class);
     List<Book> bookList = new ArrayList<>();
     books.forEach(bookList::add);
     return books.toString();
   }
 
-  @GetMapping("/findByAuthor")
-  public String findByAuthor(@RequestParam("author") String author) {
-    List<Book> books = this.bookRepository.findByAuthor(author);
-    return books.toString();
-  }
-
-  @GetMapping("/findByYearGreaterThan")
-  public String findByYearGreaterThan(@RequestParam("year") Optional<Integer> year) {
-    List<Book> books = this.bookRepository.findByYearGreaterThan(year.orElse(0));
-    return books.toString();
-  }
-
-  @GetMapping("/findByAuthorYear")
-  public String findByAuthorYear(
-      @RequestParam("author") String author,
-      @RequestParam("year") Optional<Integer> year) {
-    List<Book> books = this.bookRepository.findByAuthorAndYear(author, year.orElse(0));
-    return books.toString();
-  }
-
-  @DeleteMapping("/removeAllBooks")
-  public void removeAllBooks() {
-    this.bookRepository.deleteAll();
-  }
+  // @GetMapping("/findByAuthor")
+  // public String findByAuthor(@RequestParam("author") String author) {
+  //   List<Book> books = this.datastoreTemplate.;
+  //   return books.toString();
+  // }
+  //
+  // @GetMapping("/findByYearGreaterThan")
+  // public String findByYearGreaterThan(@RequestParam("year") Optional<Integer> year) {
+  //   List<Book> books = this.bookRepository.findByYearGreaterThan(year.orElse(0));
+  //   return books.toString();
+  // }
+  //
+  // @GetMapping("/findByAuthorYear")
+  // public String findByAuthorYear(
+  //     @RequestParam("author") String author,
+  //     @RequestParam("year") Optional<Integer> year) {
+  //   List<Book> books = this.bookRepository.findByAuthorAndYear(author, year.orElse(0));
+  //   return books.toString();
+  // }
+  //
+  // @DeleteMapping("/removeAllBooks")
+  // public void removeAllBooks() {
+  //   this.bookRepository.deleteAll();
+  // }
 }

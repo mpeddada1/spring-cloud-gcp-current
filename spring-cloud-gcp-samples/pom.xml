@@ -6,7 +6,7 @@
 	<parent>
 		<groupId>org.springframework.boot</groupId>
 		<artifactId>spring-boot-starter-parent</artifactId>
-		<version>3.0.6</version>
+		<version>3.1.0</version>
 		<relativePath/>
 	</parent>
 
@@ -103,7 +103,9 @@
 							</includes>
 							<classesDirectory>${project.build.outputDirectory}</classesDirectory>
 							<systemPropertyVariables>
-								<it.storage>true</it.storage>
+								<it.pubsub>true</it.pubsub>
+								<it.pubsub-integration>true</it.pubsub-integration>
+								<it.datastore>true</it.datastore>
 							</systemPropertyVariables>
 						</configuration>
 					</plugin>
@@ -142,7 +144,7 @@
 					<plugin>
 						<groupId>org.springframework.boot</groupId>
 						<artifactId>spring-boot-maven-plugin</artifactId>
-						<version>3.0.5</version>
+						<version>3.1.0</version>
 						<executions>
 							<execution>
 								<id>process-test-aot</id>
