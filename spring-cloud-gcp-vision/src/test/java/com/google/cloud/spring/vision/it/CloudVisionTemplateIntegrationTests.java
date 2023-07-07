@@ -29,7 +29,7 @@ import org.springframework.core.io.Resource;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit.jupiter.SpringExtension;
 
-@EnabledIfSystemProperty(named = "it.vision", matches = "true")
+//@EnabledIfSystemProperty(named = "it.vision", matches = "true")
 @ExtendWith(SpringExtension.class)
 @ContextConfiguration(classes = {VisionTestConfiguration.class})
 class CloudVisionTemplateIntegrationTests {

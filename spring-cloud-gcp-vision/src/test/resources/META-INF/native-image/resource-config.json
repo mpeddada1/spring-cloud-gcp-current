@@ -1,0 +1,12 @@
+{
+  "resources":{
+    "includes":[
+      {
+        "pattern":"\\Qdocuments/multi-page-dummy.pdf\\E"
+      },
+      {
+        "pattern":"\\Qdocuments/single-page-dummy.pdf\\E"
+      }
+    ]},
+  "bundles":[]
+}
