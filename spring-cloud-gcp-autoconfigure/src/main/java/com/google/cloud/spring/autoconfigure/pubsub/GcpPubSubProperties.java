@@ -39,6 +39,27 @@ public class GcpPubSubProperties extends PubSubConfiguration implements Credenti
   /** How often to ping the server to keep the channel alive. */
   private int keepAliveIntervalMinutes = 5;
 
+  private String universeDomain;
+
+  private String endpoint;
+
+  public String getUniverseDomain() {
+    return this.universeDomain;
+  }
+
+  public String getEndpoint() {
+    return this.endpoint;
+  }
+
+  public void setUniverseDomain(String universeDomain) {
+    this.universeDomain = universeDomain;
+  }
+
+  public void setEndpoint(String endpoint) {
+    this.endpoint = endpoint;
+  }
+
+
   /** Overrides the GCP OAuth2 credentials specified in the Core module. */
   @NestedConfigurationProperty
   private final Credentials credentials = new Credentials(GcpScope.PUBSUB.getUrl());
